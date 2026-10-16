@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>Millbrook Academy | Reader</title>
+
+<meta
+    name="description"
+    content="Read Millbrook Academy online.">
+
+<link
+    rel="icon"
+    href="favicon.ico">
+
+<link
+    rel="stylesheet"
+    href="css/style.css">
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body class="light">
+
+<!-- Animated Background -->
+
+<div class="background-overlay"></div>
+
+<!-- ===================================== -->
+<!-- Reader Layout -->
+<!-- ===================================== -->
+
+<div class="reader-layout">
+
+<!-- ===================================== -->
+<!-- Sidebar -->
+<!-- ===================================== -->
+
+<aside class="reader-sidebar glass-panel">
+
+<div class="sidebar-top">
+
+<img
+src="images/logo/millbrook-logo.png"
+alt="Millbrook Academy"
+class="reader-logo">
+
+<h2>
+
+Millbrook
+
+<br>
+
+Academy
+
+</h2>
+
+</div>
+
+<nav class="reader-menu">
+
+<a
+href="index.html"
+class="reader-button home-button">
+
+🏠 Lobby
+
+</a>
+
+<div class="chapter-panel">
+
+    <label for="chapterSelect">
+
+        Chapter
+
+    </label>
+
+    <select id="chapterSelect">
+
+        <option value="0">
+
+            Chapter One
+
+        </option>
+
+        <option value="1">
+
+            Chapter Two
+
+        </option>
+
+    </select>
+
+</div>
+
+<button
+id="prev"
+class="reader-button back-button">
+
+◀ Previous
+
+</button>
+
+<button
+id="next"
+class="reader-button next-button">
+
+Next ▶
+
+</button>
+
+<hr>
+
+<button
+id="zoomOut"
+class="reader-button zoomout-button">
+
+🔍− Zoom Out
+
+</button>
+
+<button
+id="reset"
+class="reader-button reset-button">
+
+Reset View
+
+</button>
+
+<button
+id="zoomIn"
+class="reader-button zoomin-button">
+
+🔍＋ Zoom In
+
+</button>
+
+<hr>
+
+<button
+id="fullscreen"
+class="reader-button fullscreen-button">
+
+⛶ Full Screen
+
+</button>
+
+<button
+id="themeToggle"
+class="reader-button theme-button">
+
+🌙 Theme
+
+</button>
+
+</nav>
+
+<div class="reader-status">
+
+    <div id="chapterTitle">
+
+        Chapter One
+
+    </div>
+
+    <div id="counter">
+
+        Page 1 / 10
+
+    </div>
+
+    <div class="reading-progress">
+
+    <div class="progress-bar">
+
+        <div id="progressFill"></div>
+
+    </div>
+
+    <span id="progressText">
+
+        0%
+
+    </span>
+
+</div>
+
+</div>
+
+</aside>
+
+<!-- ===================================== -->
+<!-- Reader -->
+<!-- ===================================== -->
+
+<main class="reader-main">
+
+<div id="comicReader" class="comic-reader">
+
+</div>
+</main>
+
+<!-- ===================================== -->
+<!-- JavaScript -->
+<!-- ===================================== -->
+
+<script src="js/utils.js"></script>
+
+<script src="js/theme.js"></script>
+
+<script src="js/background.js"></script>
+
+<script src="js/chapters.js"></script>
+
+<script src="js/navigation.js"></script>
+
+<script src="js/controls.js"></script>
+
+<script src="js/reader.js"></script>
+
+<script src="js/animations.js"></script>
+</body>
+
+</html>
