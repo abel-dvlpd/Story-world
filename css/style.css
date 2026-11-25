@@ -1,0 +1,3694 @@
+/*======================================================
+  MILLBROOK ACADEMY
+  Official Website Stylesheet
+  Part 1A.1
+  ------------------------------------------------------
+  Contents
+  01. CSS Reset
+  02. Root Variables
+  03. Light Theme
+  04. Dark Theme
+======================================================*/
+
+
+/*======================================================
+  01. CSS RESET
+======================================================*/
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    font-size:16px;
+    -webkit-text-size-adjust:100%;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+img,
+picture,
+svg,
+canvas{
+    display:block;
+    max-width:100%;
+    user-select:none;
+    -webkit-user-drag:none;
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
+    outline:none;
+}
+
+button{
+    border:none;
+    background:none;
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+ul,
+ol{
+    list-style:none;
+}
+
+
+/*======================================================
+  02. ROOT VARIABLES
+======================================================*/
+
+:root{
+
+    /* Typography */
+
+    --font-main:'Poppins',sans-serif;
+    --font-heading:'Poppins',sans-serif;
+
+    /* Sizes */
+
+    --max-width:1400px;
+
+    --radius-sm:8px;
+    --radius-md:14px;
+    --radius-lg:22px;
+    --radius-xl:40px;
+
+    /* Animation */
+
+    --transition-fast:.25s ease;
+    --transition:.4s ease;
+    --transition-slow:.8s ease;
+
+    /* Shadows */
+
+    --shadow-small:
+        0 6px 18px rgba(0,0,0,.15);
+
+    --shadow-medium:
+        0 15px 40px rgba(0,0,0,.22);
+
+    --shadow-large:
+        0 25px 70px rgba(0,0,0,.35);
+
+    /* Glass */
+
+    --glass-blur:18px;
+    --glass-border:rgba(255,255,255,.15);
+
+    /* Z-index */
+
+    --z-background:-2;
+    --z-overlay:-1;
+    --z-content:5;
+    --z-navbar:100;
+    --z-modal:500;
+    --z-loader:1000;
+
+    --comic-width:1600px;
+
+}
+
+
+/*======================================================
+  03. LIGHT THEME
+======================================================*/
+
+body{
+
+    --background:#f4f7fb;
+
+    --background-secondary:#ffffff;
+
+    --surface:rgba(255,255,255,.72);
+
+    --surface-solid:#ffffff;
+
+    --text:#1b2233;
+
+    --text-light:#5f6b84;
+
+    --heading:#10203d;
+
+    --primary:#2d73ff;
+
+    --primary-hover:#1456d9;
+
+    --secondary:#f2b53d;
+
+    --accent:#34b8ff;
+
+    --success:#31b86b;
+
+    --danger:#ef4d61;
+
+    --border:rgba(0,0,0,.08);
+
+    --glass:rgba(255,255,255,.55);
+
+    --navbar:rgba(255,255,255,.72);
+
+    --card:rgba(255,255,255,.80);
+
+    --hero-overlay:rgba(255,255,255,.28);
+
+    --background-image:url("../images/backgrounds/background.png");
+
+}
+
+
+/*======================================================
+  04. DARK THEME
+======================================================*/
+
+body.dark-mode{
+
+    --background:
+        #0d1119;
+
+    --background-secondary:
+        #141b28;
+
+    --surface:
+        rgba(18,25,39,.72);
+
+    --surface-solid:
+        #182131;
+
+    --text:
+        #eef3ff;
+
+    --text-light:
+        #aab5ca;
+
+    --heading:
+        #ffffff;
+
+    --primary:
+        #49a7ff;
+
+    --primary-hover:
+        #80c4ff;
+
+    --secondary:
+        #ffcb4f;
+
+    --accent:
+        #58d3ff;
+
+    --success:
+        #47d48c;
+
+    --danger:
+        #ff6879;
+
+    --border:
+        rgba(255,255,255,.08);
+
+    --glass:
+        rgba(30,38,55,.58);
+
+    --navbar:
+        rgba(15,20,32,.72);
+
+    --card:
+        rgba(22,31,48,.82);
+
+    --hero-overlay:
+        rgba(0,0,0,.42);
+
+    --background-image:
+        url("../images/backgrounds/backgroundnight.png");
+
+}
+/*======================================================
+  05. GLOBAL STYLES
+======================================================*/
+
+body{
+
+    font-family:var(--font-main);
+    background:var(--background);
+    color:var(--text);
+
+    line-height:1.7;
+
+    transition:
+        background var(--transition),
+        color var(--transition);
+
+    position:relative;
+}
+
+/* Animated Background */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:var(--background-image);
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+   filter:blur(2px) brightness(.80);
+
+    transform:scale(1.12);
+
+    animation:backgroundFloat 35s ease-in-out infinite alternate;
+
+    z-index:var(--z-background);
+
+}
+
+/* Dark Overlay */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:var(--hero-overlay);
+
+    backdrop-filter:blur(2px);
+
+    z-index:var(--z-overlay);
+
+}
+
+/* Main Content */
+
+main,
+header,
+section,
+footer{
+
+    position:relative;
+
+    z-index:var(--z-content);
+
+}
+
+/* Selection */
+
+::selection{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:var(--background-secondary);
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:100px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--primary-hover);
+
+}
+
+
+/*======================================================
+  06. TYPOGRAPHY
+======================================================*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+
+    font-family:var(--font-heading);
+
+    color:var(--heading);
+
+    font-weight:700;
+
+    line-height:1.2;
+
+    margin-bottom:1rem;
+
+}
+
+h1{
+
+    font-size:clamp(3rem,6vw,5.5rem);
+
+}
+
+h2{
+
+    font-size:clamp(2rem,4vw,3.4rem);
+
+}
+
+h3{
+
+    font-size:1.5rem;
+
+}
+
+p{
+
+    color:var(--text-light);
+
+    margin-bottom:1rem;
+
+    max-width:780px;
+
+}
+
+strong{
+
+    color:var(--heading);
+
+}
+
+small{
+
+    font-size:.85rem;
+
+    color:var(--text-light);
+
+}
+
+
+/*======================================================
+  07. LAYOUT SYSTEM
+======================================================*/
+
+.container{
+
+    width:min(92%, var(--max-width));
+
+    margin-inline:auto;
+
+}
+
+.section{
+
+    padding:7rem 0;
+
+}
+
+.flex{
+
+    display:flex;
+
+}
+
+.grid{
+
+    display:grid;
+
+}
+
+.center{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.hidden{
+
+    opacity:0;
+
+    transform:translateY(50px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+
+}
+
+.text-center{
+
+    text-align:center;
+
+}
+
+.w-100{
+
+    width:100%;
+
+}
+
+.h-100{
+
+    height:100%;
+
+}
+
+.glass{
+
+    background:var(--glass);
+
+    -webkit-backdrop-filter:blur(var(--glass-blur));
+
+    backdrop-filter:blur(var(--glass-blur));
+
+    border:1px solid var(--glass-border);
+
+    border-radius:var(--radius-lg);
+
+    box-shadow:var(--shadow-medium);
+
+}
+/*======================================================
+  08. BACKGROUNDS
+======================================================*/
+
+/* Animated Background Overlay */
+
+.background-overlay{
+
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:var(--z-overlay);
+
+    background:
+        radial-gradient(circle at top left,
+            rgba(255,255,255,.10),
+            transparent 35%),
+
+        radial-gradient(circle at bottom right,
+            rgba(255,210,80,.08),
+            transparent 30%),
+
+        radial-gradient(circle at center,
+            rgba(70,160,255,.06),
+            transparent 45%);
+
+    animation:overlayFloat 22s ease-in-out infinite alternate;
+
+}
+
+/* Floating Light Effect */
+
+.background-overlay::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:55vw;
+    height:55vw;
+
+    top:-20%;
+    left:-15%;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle,
+            rgba(255,255,255,.12),
+            transparent 70%);
+
+    filter:blur(70px);
+
+    animation:lightMove 30s ease-in-out infinite alternate;
+
+}
+
+/* Ambient Glow */
+
+.background-overlay::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:45vw;
+    height:45vw;
+
+    right:-15%;
+    bottom:-20%;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle,
+            rgba(52,184,255,.10),
+            transparent 70%);
+
+    filter:blur(90px);
+
+    animation:lightMoveReverse 34s ease-in-out infinite alternate;
+
+}
+
+
+/*======================================================
+  09. NAVBAR
+======================================================*/
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    width:100%;
+
+    z-index:var(--z-navbar);
+
+    transition:all var(--transition);
+
+}
+
+.navbar{
+
+    width:min(95%, var(--max-width));
+
+    margin:1rem auto;
+
+    padding:1rem 2rem;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:var(--navbar);
+
+    -webkit-backdrop-filter:blur(var(--glass-blur));
+
+    backdrop-filter:blur(var(--glass-blur));
+
+    border:1px solid var(--glass-border);
+
+    border-radius:var(--radius-xl);
+
+    box-shadow:var(--shadow-medium);
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:1rem;
+
+}
+
+.logo img{
+
+    width:60px;
+
+    height:60px;
+
+    object-fit:contain;
+
+}
+
+.logo h2{
+
+    margin:0;
+
+    font-size:1.35rem;
+
+    letter-spacing:.05em;
+
+}
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:1.5rem;
+
+}
+
+.nav-links a{
+
+    color:var(--heading);
+
+    font-weight:600;
+
+    transition:color var(--transition-fast);
+
+}
+
+.nav-links a:hover{
+
+    color:var(--primary);
+
+}
+
+#themeToggle{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    font-size:1.2rem;
+
+    display:grid;
+
+    place-items:center;
+
+    transition:all var(--transition-fast);
+
+}
+
+#themeToggle:hover{
+
+    transform:rotate(15deg) scale(1.08);
+
+    background:var(--primary-hover);
+
+}
+
+
+/*======================================================
+  10. HERO SECTION
+======================================================*/
+
+.hero{
+
+    min-height:90vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:4rem 2rem;
+
+}
+
+.hero-content{
+
+    max-width:900px;
+
+    animation:fadeUp 1.2s ease both;
+
+}
+
+.hero-logo{
+
+    width:180px;
+
+    margin:0 auto 2rem;
+
+    filter:
+        drop-shadow(0 15px 40px rgba(0,0,0,.35));
+
+}
+
+.hero h1{
+
+    margin-bottom:1.5rem;
+
+}
+
+.hero h1 span{
+
+    color:var(--primary);
+
+}
+
+.hero p{
+
+    font-size:1.15rem;
+
+    margin-inline:auto;
+
+    margin-bottom:2.5rem;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:1.5rem;
+
+    flex-wrap:wrap;
+
+}
+
+/*======================================================
+  HOMEPAGE MUSIC PLAYER
+======================================================*/
+
+.music-controls{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.8rem;
+
+}
+
+.music-button{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-size:1rem;
+
+    transition:all var(--transition);
+
+}
+
+.music-button:hover{
+
+    background:var(--success);
+
+    transform:scale(1.08);
+
+}
+
+#volumeSlider{
+
+    width:110px;
+
+    cursor:pointer;
+
+    accent-color:var(--secondary);
+
+}
+
+/*======================================================
+  11. BUTTONS
+======================================================*/
+
+.primary-btn,
+.secondary-btn,
+.read-btn-nav,
+.cta-button{
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:.75rem;
+
+    padding:1rem 2rem;
+
+    border-radius:var(--radius-xl);
+
+    font-weight:600;
+
+    transition:all var(--transition);
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+.primary-btn,
+.read-btn-nav,
+.cta-button{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    box-shadow:var(--shadow-medium);
+
+}
+
+.primary-btn:hover,
+.read-btn-nav:hover,
+.cta-button:hover{
+
+    background:var(--primary-hover);
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow-large);
+
+}
+
+.secondary-btn{
+
+    background:var(--glass);
+
+    color:var(--heading);
+
+    border:1px solid var(--glass-border);
+
+    -webkit-backdrop-filter:blur(var(--glass-blur));
+
+    backdrop-filter:blur(var(--glass-blur));
+
+}
+
+.secondary-btn:hover{
+
+    transform:translateY(-4px);
+
+    background:rgba(255,255,255,.18);
+
+}
+
+button:active,
+.primary-btn:active,
+.secondary-btn:active,
+.read-btn-nav:active,
+.cta-button:active{
+
+    transform:scale(.96);
+
+}
+
+
+/*======================================================
+  12. ANIMATIONS
+======================================================*/
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes backgroundFloat{
+
+    0%{
+
+        transform:
+            scale(1.12)
+            translate(-2%,-2%);
+
+    }
+
+    100%{
+
+        transform:
+            scale(1.18)
+            translate(2%,2%);
+
+    }
+
+}
+
+@keyframes overlayFloat{
+
+    from{
+
+        opacity:.65;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes lightMove{
+
+    from{
+
+        transform:translate(0,0);
+
+    }
+
+    to{
+
+        transform:translate(120px,70px);
+
+    }
+
+}
+
+@keyframes lightMoveReverse{
+
+    from{
+
+        transform:translate(0,0);
+
+    }
+
+    to{
+
+        transform:translate(-120px,-80px);
+
+    }
+
+}
+
+
+/*======================================================
+  13. RESPONSIVE UTILITIES
+======================================================*/
+
+@media (max-width:992px){
+
+    .navbar{
+
+        padding:1rem 1.5rem;
+
+    }
+
+    .hero{
+
+        min-height:80vh;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:1rem;
+
+    }
+
+    .nav-links{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:1rem;
+
+    }
+
+    .hero-logo{
+
+        width:140px;
+
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+    .primary-btn,
+    .secondary-btn,
+    .cta-button{
+
+        width:100%;
+
+        max-width:320px;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    html{
+
+        font-size:15px;
+
+    }
+
+    .logo h2{
+
+        font-size:1.05rem;
+
+    }
+
+    .hero{
+
+        padding:3rem 1rem;
+
+    }
+
+}
+/*======================================================
+  14. STORY SECTION
+======================================================*/
+
+.story-section{
+
+    padding:7rem 0;
+
+    position:relative;
+
+}
+
+.story-section .container{
+
+    max-width:900px;
+
+    margin:auto;
+
+    text-align:center;
+
+    background:var(--card);
+
+    -webkit-backdrop-filter:blur(var(--glass-blur));
+    backdrop-filter:blur(var(--glass-blur));
+
+    border:1px solid var(--glass-border);
+
+    border-radius:var(--radius-xl);
+
+    padding:4rem;
+
+    box-shadow:var(--shadow-large);
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        background var(--transition);
+
+}
+
+.story-section .container:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.28);
+
+}
+
+.story-section h2{
+
+    position:relative;
+
+    display:inline-block;
+
+    margin-bottom:2rem;
+
+}
+
+.story-section h2::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    bottom:-12px;
+
+    transform:translateX(-50%);
+
+    width:90px;
+    height:4px;
+
+    border-radius:100px;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+}
+
+.story-section p{
+
+    font-size:1.1rem;
+
+    line-height:1.9;
+
+    margin-inline:auto;
+
+    color:var(--text-light);
+
+}
+
+.story-section strong{
+
+    color:var(--heading);
+
+}
+
+.story-section em{
+
+    color:var(--primary);
+
+    font-style:normal;
+
+    font-weight:600;
+
+}
+
+/* Decorative glow */
+
+.story-section::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:280px;
+    height:280px;
+
+    border-radius:50%;
+
+    top:-80px;
+    left:-120px;
+
+    background:
+        radial-gradient(circle,
+            rgba(73,167,255,.15),
+            transparent 70%);
+
+    filter:blur(50px);
+
+    pointer-events:none;
+
+}
+
+.story-section::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+    height:240px;
+
+    right:-90px;
+    bottom:-70px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle,
+            rgba(255,203,79,.12),
+            transparent 70%);
+
+    filter:blur(55px);
+
+    pointer-events:none;
+
+}
+/*======================================================
+  15. STORY THEMES
+======================================================*/
+
+.themes{
+
+    padding:6rem 0;
+
+    position:relative;
+
+}
+
+.theme-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px,1fr));
+
+    gap:2rem;
+
+    margin-top:3rem;
+
+}
+
+.theme-card{
+
+    background:var(--card);
+
+    -webkit-backdrop-filter:blur(var(--glass-blur));
+    backdrop-filter:blur(var(--glass-blur));
+
+
+    border:1px solid var(--glass-border);
+
+    border-radius:var(--radius-lg);
+
+    padding:2rem 1.5rem;
+
+    text-align:center;
+
+    box-shadow:var(--shadow-medium);
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition),
+        background var(--transition);
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.theme-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.08),
+            transparent 60%
+        );
+
+    opacity:0;
+
+    transition:opacity var(--transition);
+
+    pointer-events:none;
+
+}
+
+.theme-card:hover{
+
+    transform:
+        translateY(-10px)
+        scale(1.03);
+
+    box-shadow:var(--shadow-large);
+
+    border-color:var(--primary);
+
+}
+
+.theme-card:hover::before{
+
+    opacity:1;
+
+}
+
+.theme-card span{
+
+    display:block;
+
+    font-size:3rem;
+
+    margin-bottom:1rem;
+
+    transition:
+        transform var(--transition);
+
+}
+
+.theme-card:hover span{
+
+    transform:
+        scale(1.15)
+        rotate(6deg);
+
+}
+
+.theme-card h3{
+
+    margin:0;
+
+    color:var(--heading);
+
+    font-size:1.2rem;
+
+    font-weight:600;
+
+    letter-spacing:.02em;
+
+}
+/*======================================================
+  16. CHARACTER SECTION
+======================================================*/
+
+.characters{
+
+    padding:7rem 0;
+
+    position:relative;
+
+    text-align:center;
+
+}
+
+.characters h2{
+
+    margin-bottom:3rem;
+
+}
+
+.character-grid{
+
+    width:min(92%, var(--max-width));
+
+    margin:0 auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(260px,1fr));
+
+    gap:2rem;
+
+}
+
+.character-card{
+
+    background:var(--card);
+
+    -webkit-backdrop-filter:blur(var(--glass-blur));
+    backdrop-filter:blur(var(--glass-blur));
+
+    border:1px solid var(--glass-border);
+
+    border-radius:var(--radius-xl);
+
+    padding:2.5rem 2rem;
+
+    box-shadow:var(--shadow-medium);
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.character-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.10),
+            transparent 55%
+        );
+
+    opacity:0;
+
+    transition:opacity var(--transition);
+
+    pointer-events:none;
+
+}
+
+.character-card:hover{
+
+    transform:
+        translateY(-12px);
+
+    border-color:var(--primary);
+
+    box-shadow:var(--shadow-large);
+
+}
+
+.character-card:hover::before{
+
+    opacity:1;
+
+}
+
+/* Portrait Placeholder */
+
+.character-image{
+
+    width:150px;
+
+    height:150px;
+
+    margin:0 auto 1.8rem;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:700;
+
+    text-align:center;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    box-shadow:
+
+        0 15px 35px rgba(0,0,0,.25),
+
+        inset 0 0 25px rgba(255,255,255,.15);
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+
+}
+
+.character-card:hover .character-image{
+
+    transform:
+        scale(1.08)
+        rotate(3deg);
+
+    box-shadow:
+
+        0 25px 55px rgba(0,0,0,.35),
+
+        inset 0 0 35px rgba(255,255,255,.18);
+
+}
+
+.character-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+}
+
+.character-card h3{
+
+    margin-bottom:1rem;
+
+    color:var(--heading);
+
+}
+
+.character-card p{
+
+    margin:0 auto;
+
+    font-size:.98rem;
+
+    color:var(--text-light);
+
+    line-height:1.8;
+
+}
+/*======================================================
+  17. CALL TO ACTION
+======================================================*/
+
+.cta{
+
+    padding:7rem 2rem;
+
+    text-align:center;
+
+    position:relative;
+
+}
+
+.cta::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(circle at center,
+        rgba(73,167,255,.12),
+        transparent 70%);
+
+    pointer-events:none;
+
+}
+
+.cta h2{
+
+    margin-bottom:1.5rem;
+
+    font-size:clamp(2.2rem,4vw,3.5rem);
+
+}
+
+.cta p{
+
+    max-width:720px;
+
+    margin:0 auto 2.5rem;
+
+    font-size:1.1rem;
+
+}
+
+.cta-button{
+
+    min-width:240px;
+
+    font-size:1.1rem;
+
+    letter-spacing:.03em;
+
+}
+
+.cta-button:hover{
+
+    transform:
+        translateY(-5px)
+        scale(1.02);
+
+}
+
+
+/*======================================================
+  18. ABOUT SECTION
+======================================================*/
+
+.about{
+
+    padding:7rem 0;
+
+    position:relative;
+
+}
+
+.about .container{
+
+    max-width:900px;
+
+    margin:auto;
+
+    text-align:center;
+
+    background:var(--card);
+
+    -webkit-backdrop-filter:blur(var(--glass-blur));
+    backdrop-filter:blur(var(--glass-blur));
+
+    border:1px solid var(--glass-border);
+
+    border-radius:var(--radius-xl);
+
+    padding:4rem;
+
+    box-shadow:var(--shadow-large);
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+
+}
+
+.about .container:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+
+        0 30px 80px rgba(0,0,0,.28);
+
+}
+
+.about h2{
+
+    position:relative;
+
+    display:inline-block;
+
+    margin-bottom:2rem;
+
+}
+
+.about h2::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    bottom:-12px;
+
+    transform:translateX(-50%);
+
+    width:90px;
+    height:4px;
+
+    border-radius:999px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+}
+
+.about p{
+
+    margin-inline:auto;
+
+    line-height:1.9;
+
+    font-size:1.08rem;
+
+}
+
+
+/*======================================================
+  19. FOOTER
+======================================================*/
+
+footer{
+
+    padding:3rem 2rem;
+
+    margin-top:5rem;
+
+    border-top:1px solid var(--border);
+
+    background:rgba(0,0,0,.08);
+
+   -webkit-backdrop-filter:blur(10px);
+
+    backdrop-filter:blur(10px);
+
+}
+
+.footer-content{
+
+    width:min(92%, var(--max-width));
+
+    margin:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:1.5rem;
+
+    text-align:center;
+
+}
+
+.footer-content img{
+
+    width:90px;
+
+    height:auto;
+
+    opacity:.95;
+
+    transition:transform var(--transition);
+
+}
+
+.footer-content img:hover{
+
+    transform:rotate(5deg) scale(1.08);
+
+}
+
+.footer-content p{
+
+    margin:0;
+
+    color:var(--text-light);
+
+    font-size:.95rem;
+
+}
+/*======================================================
+  17. CALL TO ACTION
+======================================================*/
+
+.cta{
+
+    padding:7rem 0;
+
+    position:relative;
+
+}
+
+.cta .container{
+
+    text-align:center;
+
+    background:var(--card);
+
+    border:1px solid var(--glass-border);
+
+    -webkit-backdrop-filter:blur(var(--glass-blur));
+    backdrop-filter:blur(var(--glass-blur));
+
+    border-radius:var(--radius-xl);
+
+    padding:4rem;
+
+    box-shadow:var(--shadow-large);
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+
+}
+
+.cta .container:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.28);
+
+}
+
+.cta h2{
+
+    margin-bottom:1.5rem;
+
+}
+
+.cta p{
+
+    margin:0 auto 2.5rem;
+
+    max-width:700px;
+
+}
+
+.cta-button{
+
+    min-width:240px;
+
+}
+
+
+
+/*======================================================
+  18. ABOUT SECTION
+======================================================*/
+
+.about{
+
+    padding:7rem 0;
+
+}
+
+.about .container{
+
+    background:var(--card);
+
+    border:1px solid var(--glass-border);
+
+    -webkit-backdrop-filter:blur(var(--glass-blur));
+    backdrop-filter:blur(var(--glass-blur));
+
+    border-radius:var(--radius-xl);
+
+    padding:4rem;
+
+    box-shadow:var(--shadow-large);
+
+    text-align:center;
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+
+}
+
+.about .container:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.28);
+
+}
+
+.about h2{
+
+    margin-bottom:2rem;
+
+}
+
+.about p{
+
+    max-width:760px;
+
+    margin:auto;
+
+}
+
+
+
+/*======================================================
+  19. FOOTER
+======================================================*/
+
+footer{
+
+    margin-top:5rem;
+
+    padding:3rem 0;
+
+    border-top:1px solid var(--border);
+
+    background:rgba(0,0,0,.08);
+
+    backdrop-filter:blur(12px);
+
+}
+
+.footer-content{
+
+    width:min(92%, var(--max-width));
+
+    margin:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:1.25rem;
+
+}
+
+.footer-content img{
+
+    width:90px;
+
+    transition:
+        transform var(--transition);
+
+}
+
+.footer-content img:hover{
+
+    transform:
+        rotate(5deg)
+        scale(1.06);
+
+}
+
+.footer-content p{
+
+    margin:0;
+
+    color:var(--text-light);
+
+}
+
+
+
+/*======================================================
+  DESIGN SYSTEM PREVIEW
+======================================================*/
+
+/*
+    These are the FIRST reusable utilities.
+
+    We will begin using them in
+    millbrook.html.
+
+    Existing sections are intentionally
+    left unchanged.
+*/
+
+.glass-panel{
+
+    background:var(--card);
+
+    border:1px solid var(--glass-border);
+
+    -webkit-backdrop-filter:blur(var(--glass-blur));
+    backdrop-filter:blur(var(--glass-blur));
+
+    border-radius:var(--radius-xl);
+
+    box-shadow:var(--shadow-large);
+
+}
+
+.hover-lift{
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+
+}
+
+.hover-lift:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.28);
+
+}
+/*======================================================
+  19.1 CTA & FOOTER POLISH
+  (Completes Part 2B.1)
+======================================================*/
+
+/* ---------- CTA Ambient Glow ---------- */
+
+.cta::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:650px;
+    height:650px;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,188,212,.10),
+            transparent 70%
+        );
+
+    filter:blur(70px);
+
+    pointer-events:none;
+
+    animation:
+        ctaGlow 10s ease-in-out infinite alternate;
+
+}
+
+/* Keep CTA content above glow */
+
+.cta .container{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+/* ---------- Footer Ready for Future Links ---------- */
+
+.footer-links{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:1.25rem;
+
+    margin-top:.75rem;
+
+}
+
+.footer-links a{
+
+    color:var(--text-light);
+
+    text-decoration:none;
+
+    font-weight:500;
+
+    transition:
+        color var(--transition-fast),
+        transform var(--transition-fast);
+
+}
+
+.footer-links a:hover{
+
+    color:var(--primary);
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ---------- Gentle Logo Float ---------- */
+
+.footer-content img{
+
+    animation:
+        logoFloat 5s ease-in-out infinite;
+
+}
+
+
+/* ---------- Additional Utility Classes ---------- */
+
+.text-center{
+
+    text-align:center;
+
+}
+
+.section-spacing{
+
+    padding-top:7rem;
+
+    padding-bottom:7rem;
+
+}
+
+.max-width{
+
+    width:min(92%, var(--max-width));
+
+    margin-inline:auto;
+
+}
+
+
+/* ---------- New Animations ---------- */
+
+@keyframes logoFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-6px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes ctaGlow{
+
+    from{
+
+        opacity:.45;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+
+    }
+
+    to{
+
+        opacity:.85;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.08);
+
+    }
+
+}
+/*======================================================
+  MAIN.JS SUPPORT
+======================================================*/
+
+.hidden{
+
+    opacity:0;
+
+    transform:translateY(50px);
+
+    transition:
+
+        opacity .8s ease,
+
+        transform .8s ease;
+
+}
+
+.visible{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+.navbar{
+
+    transition:
+
+        background .35s ease,
+
+        backdrop-filter .35s ease,
+
+        box-shadow .35s ease;
+
+}
+
+.navbar-scrolled{
+
+    background:rgba(20,20,20,.70);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+
+        0 10px 35px rgba(0,0,0,.20);
+
+}
+
+#scrollTop{
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:
+
+        translateY(20px);
+
+    transition:
+
+        opacity .3s ease,
+
+        transform .3s ease;
+
+}
+
+#scrollTop.show{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+    transform:
+
+        translateY(0);
+
+}
+/*======================================================
+  PART 3A.1
+  MILLBROOK COMIC READER
+  ------------------------------------------------------
+  23. Reader Layout
+  24. Sidebar
+  25. Reader Buttons
+======================================================*/
+
+
+/*======================================================
+  23. READER LAYOUT
+======================================================*/
+
+.reader-layout{
+
+    position:relative;
+
+    z-index:var(--z-content);
+
+    display:flex;
+
+    min-height:100vh;
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+/* Main Reading Area */
+
+.reader-main{
+
+    flex:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:2rem;
+
+    margin-left:280px;
+
+    min-height:100vh;
+
+    transition:all var(--transition);
+
+}
+
+/* Prevent accidental text selection while reading */
+
+.reader-layout,
+.reader-layout *{
+
+    user-select:none;
+
+    -webkit-user-select:none;
+
+}
+
+
+/*======================================================
+  24. SIDEBAR
+======================================================*/
+
+.reader-sidebar{
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:280px;
+
+    height:100vh;
+
+    padding:2rem 1.5rem;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    overflow-y:auto;
+
+    border-right:1px solid var(--glass-border);
+
+    z-index:200;
+
+}
+
+/* Sidebar Scrollbar */
+
+.reader-sidebar::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.reader-sidebar::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:999px;
+
+}
+
+/* Logo Area */
+
+.sidebar-top{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    margin-bottom:2rem;
+
+}
+
+.reader-logo{
+
+    width:120px;
+
+    margin-bottom:1.25rem;
+
+    filter:
+
+        drop-shadow(0 15px 35px rgba(0,0,0,.25));
+
+    transition:
+
+        transform .45s ease,
+
+        filter .45s ease;
+
+}
+
+.reader-logo:hover{
+
+    transform:
+
+        rotate(4deg)
+
+        scale(1.05);
+
+}
+
+.sidebar-top h2{
+
+    margin:0;
+
+    font-size:1.5rem;
+
+    line-height:1.3;
+
+    letter-spacing:.04em;
+
+}
+
+/* Navigation */
+
+.reader-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:.9rem;
+
+    margin-top:1rem;
+
+}
+
+.reader-menu hr{
+
+    border:none;
+
+    height:1px;
+
+    background:
+
+        rgba(255,255,255,.10);
+
+    margin:.75rem 0;
+
+}
+
+/* Page Counter */
+
+.reader-status{
+
+    margin-top:2rem;
+
+    text-align:center;
+
+}
+
+#counter{
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-width:160px;
+
+    padding:.9rem 1.2rem;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(12px);
+
+    color:var(--heading);
+
+    font-weight:600;
+
+}
+
+
+
+/*======================================================
+  25. READER BUTTONS
+======================================================*/
+
+.reader-button{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:.7rem;
+
+    padding:1rem;
+
+    border-radius:16px;
+
+    font-weight:600;
+
+    font-size:.96rem;
+
+    letter-spacing:.02em;
+
+    transition:
+
+        transform .25s ease,
+
+        background .25s ease,
+
+        color .25s ease,
+
+        box-shadow .25s ease;
+
+}
+
+/* Home */
+
+.home-button{
+
+    background:#163d73;
+
+    color:white;
+
+}
+
+/* Previous */
+
+.back-button{
+
+    background:#922b2b;
+
+    color:white;
+
+}
+
+/* Next */
+
+.next-button{
+
+    background:#d7a31b;
+
+    color:#1b2233;
+
+}
+
+/* Zoom Out */
+
+.zoomout-button{
+
+    background:#c96a18;
+
+    color:white;
+
+}
+
+/* Reset */
+
+.reset-button{
+
+    background:#7d8896;
+
+    color:white;
+
+}
+
+/* Zoom In */
+
+.zoomin-button{
+
+    background:#2568d8;
+
+    color:white;
+
+}
+
+/* Fullscreen */
+
+.fullscreen-button{
+
+    background:#1f8d57;
+
+    color:white;
+
+}
+
+/* Theme */
+
+.theme-button{
+
+    background:#223d70;
+
+    color:white;
+
+}
+
+/* Hover */
+
+.reader-button:hover{
+
+    transform:
+
+        translateY(-4px)
+
+        scale(1.02);
+
+    box-shadow:
+
+        0 18px 35px rgba(0,0,0,.25);
+
+}
+
+/* Active */
+
+.reader-button:active{
+
+    transform:
+
+        scale(.97);
+
+}
+
+/* Individual Hover Colours */
+
+.home-button:hover{
+
+    background:#2978ff;
+
+}
+
+.back-button:hover{
+
+    background:#d64045;
+
+}
+
+.next-button:hover{
+
+    background:#ffcf43;
+
+}
+
+.zoomout-button:hover{
+
+    background:#ff8936;
+
+}
+
+.reset-button:hover{
+
+    background:#aeb7c3;
+
+    color:#222;
+
+}
+
+.zoomin-button:hover{
+
+    background:#43b0ff;
+
+}
+
+.fullscreen-button:hover{
+
+    background:#34d07a;
+
+}
+
+.theme-button:hover{
+
+    background:#d8b341;
+
+    color:#222;
+
+}
+/*======================================================
+  PART 3A.2
+  MILLBROOK COMIC READER
+  ------------------------------------------------------
+  26. Comic Stage
+  27. Comic Image
+  28. Responsive Reader
+  29. Zoom/Pan Preparation
+======================================================*/
+
+
+/*======================================================
+  26. COMIC STAGE
+======================================================*/
+
+.comic-stage{
+
+    position:relative;
+
+    width:100%;
+
+    height:calc(100vh - 4rem);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    padding:2rem;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.05),
+            rgba(255,255,255,.02)
+        );
+
+    box-shadow:
+
+        inset 0 0 0 1px rgba(255,255,255,.05),
+
+        0 25px 70px rgba(0,0,0,.30);
+
+}
+
+/* Soft spotlight behind comic */
+
+.comic-stage::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:900px;
+
+    height:900px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(255,255,255,.08),
+
+            transparent 72%
+
+        );
+
+    filter:blur(70px);
+
+    pointer-events:none;
+
+    animation:
+
+        readerGlow 12s ease-in-out infinite alternate;
+
+}
+
+/* Decorative border */
+
+.comic-stage::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:28px;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    pointer-events:none;
+
+}
+
+
+/*======================================================
+  27. COMIC VIEWPORT
+======================================================*/
+
+#comicViewport{
+
+    position:relative;
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    cursor:grab;
+
+}
+
+/* While dragging */
+
+#comicViewport.dragging{
+
+    cursor:grabbing;
+
+}
+
+
+/*======================================================
+  28. COMIC IMAGE
+======================================================*/
+
+#comicPage{
+
+    position:relative;
+
+    display:block;
+
+    max-width:95%;
+
+    max-height:95%;
+
+    width:auto;
+
+    height:auto;
+
+    object-fit:contain;
+
+    image-rendering:auto;
+
+    border-radius:14px;
+
+    box-shadow:
+
+        0 30px 80px rgba(0,0,0,.45);
+
+    transition:
+
+        transform .18s ease,
+
+        box-shadow .30s ease,
+
+        filter .30s ease;
+
+    transform-origin:center center;
+
+    will-change:transform;
+
+    user-select:none;
+
+    -webkit-user-select:none;
+
+    -webkit-user-drag:none;
+
+}
+
+/* Small hover lift */
+
+#comicPage:hover{
+
+    box-shadow:
+
+        0 35px 95px rgba(0,0,0,.50);
+
+}
+
+/* Loading state */
+
+#comicPage.loading{
+
+    opacity:.35;
+
+    filter:blur(3px);
+
+}
+
+/* Finished loading */
+
+#comicPage.loaded{
+
+    opacity:1;
+
+    filter:none;
+
+}
+
+
+/*======================================================
+  29. READER READY FOR ZOOM
+======================================================*/
+
+/*
+    These properties will allow comic.js
+    to control zoom and panning later.
+
+    No JavaScript required yet.
+*/
+
+#comicViewport{
+
+    touch-action:none;
+
+}
+
+#comicPage{
+
+    transform:
+
+        translate(0px,0px)
+
+        scale(1);
+
+}
+
+/* Prevent blue selection highlight */
+
+.reader-main img{
+
+    pointer-events:auto;
+
+}
+
+/* Smooth transform updates */
+
+.zooming #comicPage{
+
+    transition:
+
+        transform .12s linear;
+
+}
+
+
+/*======================================================
+  30. RESPONSIVE READER
+======================================================*/
+
+@media (max-width:1100px){
+
+    .reader-sidebar{
+
+        width:240px;
+
+    }
+
+    .reader-main{
+
+        margin-left:240px;
+
+        padding:1.5rem;
+
+    }
+
+}
+
+@media (max-width:900px){
+
+    .reader-layout{
+
+        flex-direction:column;
+
+    }
+
+    .reader-sidebar{
+
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+
+        border-right:none;
+
+        border-bottom:1px solid var(--glass-border);
+
+        padding:1.5rem;
+
+    }
+
+    .reader-main{
+
+        margin-left:0;
+
+        width:100%;
+
+        min-height:auto;
+
+        padding:1rem;
+
+    }
+
+    .reader-menu{
+
+        display:grid;
+
+        grid-template-columns:
+
+            repeat(2,1fr);
+
+        gap:.8rem;
+
+    }
+
+    .reader-menu hr{
+
+        display:none;
+
+    }
+
+    .comic-stage{
+
+        height:75vh;
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    .reader-logo{
+
+        width:80px;
+
+    }
+
+    .sidebar-top h2{
+
+        font-size:1.15rem;
+
+    }
+
+    .reader-button{
+
+        padding:.85rem;
+
+        font-size:.88rem;
+
+    }
+
+    .reader-status{
+
+        margin-top:1.2rem;
+
+    }
+
+    #counter{
+
+        width:100%;
+
+    }
+
+    .comic-stage{
+
+        padding:.75rem;
+
+        border-radius:18px;
+
+        height:68vh;
+
+    }
+
+    #comicPage{
+
+        max-width:100%;
+
+        max-height:100%;
+
+    }
+
+}
+
+
+/*======================================================
+  31. READER ANIMATIONS
+======================================================*/
+
+@keyframes readerGlow{
+
+    from{
+
+        opacity:.45;
+
+        transform:
+
+            scale(1);
+
+    }
+
+    to{
+
+        opacity:.90;
+
+        transform:
+
+            scale(1.12);
+
+    }
+
+}
+.comic-canvas{
+
+    transform-origin:0 0;
+
+    will-change:transform;
+
+    transition:transform .18s ease-out;
+    
+    user-select:none;
+
+}
+.comic-viewport{
+
+    overflow:hidden;
+
+    user-select:none;
+
+    position:relative;
+
+    cursor:grab;
+
+}
+/*======================================================
+  DRAG SUPPORT
+======================================================*/
+
+.comic-viewport:active{
+
+    cursor:grabbing;
+
+}
+
+
+.comic-canvas img{
+
+    pointer-events:none;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+}
+
+/*======================================================
+  ZOOM LEVEL
+======================================================*/
+
+.zoom-level{
+
+    margin-top:1rem;
+
+    padding:.6rem 1rem;
+
+    border-radius:12px;
+
+    background:rgba(0,0,0,.18);
+
+    color:var(--heading);
+
+    font-weight:700;
+
+    text-align:center;
+
+    backdrop-filter:blur(12px);
+
+    transition:all .3s ease;
+
+}
+
+/* Smooth reset animation */
+
+.comic-canvas{
+
+    transition:
+
+        transform .2s ease-out;
+
+}
+/*======================================================
+  ZOOM LABEL POLISH
+======================================================*/
+
+.zoom-level{
+
+    transition:
+
+        transform .25s ease,
+
+        opacity .25s ease,
+
+        background .25s ease;
+
+}
+
+.zoom-level:hover{
+
+    transform:scale(1.05);
+
+}
+
+.zoom-level.active{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+/*======================================================
+  NAVIGATION BUTTON STATES
+======================================================*/
+
+.reader-btn:disabled{
+
+    opacity:.35;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    filter:grayscale(.5);
+
+}
+
+.reader-btn:disabled:hover{
+
+    background:inherit;
+
+}
+/*======================================================
+  PART 4A.1
+  CONTINUOUS WEBTOON READER
+======================================================*/
+
+
+/*======================================================
+  Reader Main
+======================================================*/
+
+.reader-main{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    padding:3rem;
+
+}
+
+
+/*======================================================
+  Comic Reader Container
+======================================================*/
+
+.comic-reader{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:5rem;
+
+}
+
+
+/*======================================================
+  Individual Comic Page
+======================================================*/
+
+.comic-page{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+
+/*======================================================
+  Comic Image
+======================================================*/
+
+.comic-image{
+
+    width:min(100%, var(--comic-width));
+
+    height:auto;
+
+    display:block;
+
+    border-radius:18px;
+
+    box-shadow:
+
+        0 20px 60px rgba(0,0,0,.35);
+
+    transition:
+
+        transform .35s ease,
+
+        box-shadow .35s ease;
+
+}
+
+
+/*======================================================
+  Page Hover
+======================================================*/
+
+.comic-page:hover .comic-image{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 30px 90px rgba(0,0,0,.45);
+
+}
+
+
+/*======================================================
+  Page Number
+======================================================*/
+
+.page-number{
+
+    margin-top:1.5rem;
+
+    margin-bottom:2rem;
+
+    color:var(--text-light);
+
+    font-weight:600;
+
+    letter-spacing:.12em;
+
+    text-transform:uppercase;
+
+}
+
+
+/*======================================================
+  Reader Counter
+======================================================*/
+
+.reader-status{
+
+    margin-top:auto;
+
+    text-align:center;
+
+}
+
+
+#counter{
+
+    font-weight:700;
+
+    color:var(--heading);
+
+}
+
+
+/*======================================================
+  Reader Scrollbar
+======================================================*/
+
+.reader-main::-webkit-scrollbar{
+
+    width:12px;
+
+}
+
+.reader-main::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:999px;
+
+}
+
+
+/*======================================================
+  Responsive
+======================================================*/
+
+@media (max-width:1200px){
+
+    .reader-main{
+
+        padding:2rem;
+
+    }
+
+}
+
+
+@media (max-width:768px){
+
+    .reader-main{
+
+        padding:1rem;
+
+    }
+
+    .comic-reader{
+
+        gap:3rem;
+
+    }
+
+    .comic-image{
+
+        border-radius:12px;
+
+    }
+
+}
+/*======================================================
+  ACTIVE COMIC IMAGE
+======================================================*/
+
+.comic-image{
+
+    transform-origin:center center;
+
+    transition:
+
+        transform .25s ease,
+
+        box-shadow .30s ease;
+
+    cursor:zoom-in;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+    will-change:transform;
+
+    transition:
+
+        transform .20s ease,
+
+        box-shadow .30s ease;
+
+}
+
+.comic-image.grab{
+
+    cursor:grab;
+
+}
+
+.comic-image.grabbing{
+
+    cursor:grabbing;
+
+}
+
+.comic-image:active{
+
+    cursor:grabbing;
+
+}
+/*======================================================
+  CHAPTER SELECTOR
+======================================================*/
+
+.chapter-panel{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:.6rem;
+
+    margin-bottom:1.5rem;
+
+}
+
+.chapter-panel label{
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    color:var(--text-light);
+
+}
+
+#chapterSelect{
+
+    width:100%;
+
+    padding:.8rem 1rem;
+
+    border:none;
+
+    border-radius:var(--radius-md);
+
+    background:var(--card);
+
+    color:var(--heading);
+
+    font-family:inherit;
+
+    cursor:pointer;
+
+    transition:all var(--transition);
+
+}
+
+#chapterSelect:hover{
+
+    border-color:var(--primary);
+
+}
+
+#chapterTitle{
+
+    font-weight:700;
+
+    color:var(--heading);
+
+    margin-bottom:.5rem;
+
+    text-align:center;
+
+}
+
+/*======================================================
+  READING PROGRESS
+======================================================*/
+
+.reading-progress{
+
+    margin-top:1.25rem;
+
+}
+
+.progress-bar{
+
+    width:100%;
+
+    height:10px;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+
+#progressFill{
+
+    width:0%;
+
+    height:100%;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            var(--primary),
+
+            var(--secondary)
+
+        );
+
+    transition:width .35s ease;
+
+}
+
+#progressText{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:.6rem;
+
+    font-size:.9rem;
+
+    color:var(--text-light);
+
+}
+
+/*======================================================
+  ACTIVE PAGE
+======================================================*/
+
+.comic-page{
+
+    transition:
+
+        transform .35s ease,
+
+        box-shadow .35s ease;
+
+}
+
+.active-page{
+
+    transform:scale(1.01);
+
+    box-shadow:
+
+        0 0 35px rgba(73,167,255,.25);
+
+}
